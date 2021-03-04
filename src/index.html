@@ -8,7 +8,24 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-
+    <div class="container">
+        <h1 class="h1">Тестовая форма</h1>
+        <form class="form" action="/" method="get">
+            <label for="name">Имя</label>
+            <input type="text" id="name" class="form-name" name="name" placeholder="Введите имя">
+            <label for="surname">Фамилия</label>
+            <input type="text" id="surname" class="form-surname" name="surname" placeholder="Введите фамилию">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-email" name="email" placeholder="example@example.com">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" class="form-password" name="password">
+            <label for="password-confirm">Подтверждение пароля</label>
+            <input type="password" id="password-confirm" class="form-password-confirm" name="password-confirm">
+            <label for="birth-date">Дата рождения</label>
+            <input type="date" id="birth-date" class="form-birth-date" name="birth-date">
+            <input type="submit" id="submit" class="form-submit" name="submit" value="Отправить">
+        </form>
+    </div>
     <script src="scripts/script.js"></script>
 </body>
 </html>
