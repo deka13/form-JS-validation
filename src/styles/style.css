@@ -1,3 +1,15 @@
+@font-face {
+  font-weight: 400;
+  font-family: 'PT Sans';
+  src: url('../fonts/PTSans-Regular.ttf');
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: 'PT Sans';
+  src: url('../fonts/PTSans-Bold.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -8,6 +20,42 @@ body {
   margin: 0 auto;
 }
 
+.mb-20 {
+  margin-bottom: 20px;
+}
+
 .h1 {
   text-align: center;
+}
+
+.form {
+  width: 60%;
+  margin: 0 auto;
+  padding: 30px;
+  border: 2px solid black;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+
+  font-size: 18px;
+  font-family: "PT Sans", sans-serif;
+  line-height: 1.5;
+}
+
+.form-input {
+  width: 200px;
+  height: 38px;
+  padding-left: 16px;
+  border: solid 2px #dee3e4;
+  border-radius: 3px;
+
+  outline: none;
 }
