@@ -38,7 +38,7 @@ body {
 .flex {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .form-label {
@@ -58,4 +58,44 @@ body {
   border-radius: 3px;
 
   outline: none;
+}
+
+.form-input:hover {
+  border: 2px solid #b5b5b5;
+}
+
+.form-input:focus {
+  border: 2px solid #ee3643;
+}
+
+.form-submit {
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+  padding: 14px 0;
+
+  border: none;
+  border-radius: 3px;
+
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: "PT Sans", sans-serif;
+  line-height: 18px;
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  background-color: #ee3643;
+
+  cursor: pointer;
+}
+
+.form-submit:hover,
+.form-submit:focus {
+  background-color: #ca2c37;
+}
+
+.form-submit:active {
+  background-color: #ba2732;
 }
