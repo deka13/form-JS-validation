@@ -10,6 +10,11 @@
   src: url('../fonts/PTSans-Bold.ttf');
 }
 
+* {
+  box-sizing: border-box;
+  overflow: auto;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -24,6 +29,10 @@ body {
   margin-bottom: 20px;
 }
 
+.w-250 {
+  width: 250px;
+}
+
 .h1 {
   text-align: center;
 }
@@ -32,7 +41,10 @@ body {
   width: 60%;
   margin: 0 auto;
   padding: 30px;
-  border: 2px solid black;
+  border: 2px solid gray;
+  border-radius: 5px;
+
+  background-color: white;
 }
 
 .flex {
@@ -51,7 +63,7 @@ body {
 }
 
 .form-input {
-  width: 200px;
+  width: 250px;
   height: 38px;
   padding-left: 16px;
   border: solid 2px #dee3e4;
@@ -65,7 +77,7 @@ body {
 }
 
 .form-input:focus {
-  border: 2px solid #ee3643;
+  border: 2px solid #323131;
 }
 
 .form-submit {
@@ -98,4 +110,24 @@ body {
 
 .form-submit:active {
   background-color: #ba2732;
+}
+
+.error {
+  margin: 0;
+
+  color: #ef0e1e;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.input-error {
+  border: 2px solid red;
 }
