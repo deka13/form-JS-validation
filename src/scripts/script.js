@@ -32,39 +32,39 @@ const getAge = (date) => {
 
 const isAdult = (age) => age >= 18;
 
+const addError = (field, index) => {
+  field.classList.add('input-error');
+  errors[index].classList.remove('hidden');
+  errors[index].classList.add('visible');
+};
+
+const isSuccess = (field, index) => {
+  field.classList.remove('input-error');
+  errors[index].classList.remove('visible');
+  errors[index].classList.add('hidden');
+};
+
 name.onblur = () => {
   if (!isValidName(name.value)) {
-    name.classList.add('input-error');
-    errors[0].classList.remove('hidden');
-    errors[0].classList.add('visible');
+    addError(name, 0);
   } else {
-    name.classList.remove('input-error');
-    errors[0].classList.remove('visible');
-    errors[0].classList.add('hidden');
+    isSuccess(name, 0);
   }
 };
 
 surname.onblur = () => {
   if (!isValidName(surname.value)) {
-    surname.classList.add('input-error');
-    errors[1].classList.remove('hidden');
-    errors[1].classList.add('visible');
+    addError(surname, 1);
   } else {
-    surname.classList.remove('input-error');
-    errors[1].classList.remove('visible');
-    errors[1].classList.add('hidden');
+    isSuccess(surname, 1);
   }
 };
 
 email.onblur = () => {
   if (!isValidEmail(email.value)) {
-    email.classList.add('input-error');
-    errors[2].classList.remove('hidden');
-    errors[2].classList.add('visible');
+    addError(email, 2);
   } else {
-    email.classList.remove('input-error');
-    errors[2].classList.remove('visible');
-    errors[2].classList.add('hidden');
+    isSuccess(email, 2);
   }
 };
 
@@ -72,70 +72,46 @@ birthDate.onblur = () => {
   const birthDateValue = birthDate.value;
   const userAge = getAge(birthDateValue);
   if (!isAdult(userAge) || !birthDate.value) {
-    birthDate.classList.add('input-error');
-    errors[3].classList.remove('hidden');
-    errors[3].classList.add('visible');
+    addError(birthDate, 3);
   } else {
-    birthDate.classList.remove('input-error');
-    errors[3].classList.remove('visible');
-    errors[3].classList.add('hidden');
+    isSuccess(birthDate, 3);
   }
 };
 
 password.onblur = () => {
   if (!isValidPassword(password.value)) {
-    password.classList.add('input-error');
-    errors[4].classList.remove('hidden');
-    errors[4].classList.add('visible');
+    addError(password, 4);
   } else {
-    password.classList.remove('input-error');
-    errors[4].classList.remove('visible');
-    errors[4].classList.add('hidden');
+    isSuccess(password, 4);
   }
 };
 
 passwordConfirm.onblur = () => {
   if (password.value !== passwordConfirm.value) {
-    passwordConfirm.classList.add('input-error');
-    errors[5].classList.remove('hidden');
-    errors[5].classList.add('visible');
+    addError(passwordConfirm, 5);
   } else {
-    passwordConfirm.classList.remove('input-error');
-    errors[5].classList.remove('visible');
-    errors[5].classList.add('hidden');
+    isSuccess(passwordConfirm, 5);
   }
 };
 
 form.addEventListener('submit', (evt) => {
   if (!isValidName(name.value)) {
     evt.preventDefault();
-    name.classList.add('input-error');
-    errors[0].classList.remove('hidden');
-    errors[0].classList.add('visible');
+    addError(name, 0);
   } else if (!isValidName(surname.value)) {
     evt.preventDefault();
-    surname.classList.add('input-error');
-    errors[1].classList.remove('hidden');
-    errors[1].classList.add('visible');
+    addError(surname, 1);
   } else if (!isValidEmail(email.value)) {
     evt.preventDefault();
-    email.classList.add('input-error');
-    errors[2].classList.remove('hidden');
-    errors[2].classList.add('visible');
+    addError(email, 2);
   } else if (!birthDate.value || !isAdult(getAge(birthDate.value))) {
     evt.preventDefault();
-    birthDate.classList.add('input-error');
-    errors[3].classList.remove('hidden');
-    errors[3].classList.add('visible');
+    addError(birthDate, 3);
   } else if (!isValidPassword(password.value)) {
     evt.preventDefault();
-    password.classList.add('input-error');
-    errors[4].classList.remove('hidden');
-    errors[4].classList.add('visible');
+    addError(password, 4);
   } else if (password.value !== passwordConfirm.value) {
     evt.preventDefault();
-    passwordConfirm.classList.add('input-error');
-    errors[5].classList.remove('hidden');
-    errors[5].classList.add('visible');
+    addError(passwordConfirm, 5);
   }
 });
