@@ -1,10 +1,6 @@
 const form = document.querySelector('.form');
-const name = document.querySelector('.form-name');
-const surname = document.querySelector('.form-surname');
-const email = document.querySelector('.form-email');
-const birthDate = document.querySelector('.form-birth-date');
+const inputs = document.querySelectorAll('.form-input');
 const password = document.querySelector('.form-password');
-const passwordConfirm = document.querySelector('.form-password-confirm');
 const errors = document.querySelectorAll('.error');
 
 const isValidName = (nameExample) => /^[a-zA-Zа-яА-ЯЁё]{2,43}$/.test(nameExample);
@@ -12,6 +8,8 @@ const isValidName = (nameExample) => /^[a-zA-Zа-яА-ЯЁё]{2,43}$/.test(nameE
 const isValidEmail = (emailExample) => /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(emailExample);
 
 const isValidPassword = (passwordExample) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/.test(passwordExample);
+
+const arePasswordsMatch = (passwordConfirmation) => password.value === passwordConfirmation;
 
 const getAge = (date) => {
   const dateArr = date.split('-');
@@ -30,7 +28,13 @@ const getAge = (date) => {
   return thisYear - year - delta;
 };
 
-const isAdult = (age) => age >= 18;
+const isAdult = (date) => {
+  if (!date) {
+    return false;
+  }
+  const userAge = getAge(date);
+  return userAge >= 18;
+};
 
 const addError = (field, index) => {
   field.classList.add('input-error');
@@ -44,74 +48,24 @@ const isSuccess = (field, index) => {
   errors[index].classList.add('hidden');
 };
 
-name.onblur = () => {
-  if (!isValidName(name.value)) {
-    addError(name, 0);
-  } else {
-    isSuccess(name, 0);
-  }
-};
+// eslint-disable-next-line max-len
+const functions = [isValidName, isValidName, isValidEmail, isAdult, isValidPassword, arePasswordsMatch];
 
-surname.onblur = () => {
-  if (!isValidName(surname.value)) {
-    addError(surname, 1);
-  } else {
-    isSuccess(surname, 1);
-  }
-};
-
-email.onblur = () => {
-  if (!isValidEmail(email.value)) {
-    addError(email, 2);
-  } else {
-    isSuccess(email, 2);
-  }
-};
-
-birthDate.onblur = () => {
-  const birthDateValue = birthDate.value;
-  const userAge = getAge(birthDateValue);
-  if (!isAdult(userAge) || !birthDate.value) {
-    addError(birthDate, 3);
-  } else {
-    isSuccess(birthDate, 3);
-  }
-};
-
-password.onblur = () => {
-  if (!isValidPassword(password.value)) {
-    addError(password, 4);
-  } else {
-    isSuccess(password, 4);
-  }
-};
-
-passwordConfirm.onblur = () => {
-  if (password.value !== passwordConfirm.value) {
-    addError(passwordConfirm, 5);
-  } else {
-    isSuccess(passwordConfirm, 5);
-  }
-};
+for (let i = 0; i < inputs.length; i += 1) {
+  inputs[i].addEventListener('blur', () => {
+    if (!functions[i](inputs[i].value)) {
+      addError(inputs[i], i);
+    } else {
+      isSuccess(inputs[i], i);
+    }
+  });
+}
 
 form.addEventListener('submit', (evt) => {
-  if (!isValidName(name.value)) {
-    evt.preventDefault();
-    addError(name, 0);
-  } else if (!isValidName(surname.value)) {
-    evt.preventDefault();
-    addError(surname, 1);
-  } else if (!isValidEmail(email.value)) {
-    evt.preventDefault();
-    addError(email, 2);
-  } else if (!birthDate.value || !isAdult(getAge(birthDate.value))) {
-    evt.preventDefault();
-    addError(birthDate, 3);
-  } else if (!isValidPassword(password.value)) {
-    evt.preventDefault();
-    addError(password, 4);
-  } else if (password.value !== passwordConfirm.value) {
-    evt.preventDefault();
-    addError(passwordConfirm, 5);
+  for (let i = 0; i < inputs.length; i += 1) {
+    if (!functions[i](inputs[i].value)) {
+      evt.preventDefault();
+      addError(inputs[i], i);
+    }
   }
 });
